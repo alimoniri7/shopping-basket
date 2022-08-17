@@ -14,13 +14,14 @@ const basketReduser = (basket , action) => {
         if(!basket.space.find(item => item.id === action.payload.id)){
             basket.space.push({
                 ...action.payload,
-                count : 1
+                count : 1   
             })
             return {
                 ...basket,
                 // space : [...basket.space],
                 totalSelected : basket.totalSelected+1,
-                totalPrice : basket.totalPrice + action.payload.price
+                totalPrice : basket.totalPrice + action.payload.price,
+                checkout : false, 
             }
         }
         break
