@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {Routes , Route , Navigate} from 'react-router-dom'
+import Card from './components/Card';
+import ApiProvider from './components/context/ApiProvider';
+import BasketProvider from './components/context/basketProvider';
+import Products from './components/products';
+import Detail from './components/shared/Detail';
+import Navbar from './components/shared/Navbar';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const app = () => {
+    return (
+        <ApiProvider>
+            <BasketProvider>
+                <Navbar/>
+                <Routes>
+                    <Route path='/products' element={<Products/>}/>
+                    <Route path='/products/:id' element={<Detail/>}/>
+                    <Route path='/card' element={<Card/>}/>
+                    <Route path='/*' element={<Navigate to='/products' />}/>
+                </Routes>
+            </BasketProvider>
+        </ApiProvider>
+    );
+};
 
-export default App;
+export default app;
