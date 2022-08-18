@@ -11,7 +11,7 @@ const Card = () => {
     return (
         <div>
             <div>
-                {basket.space.map(item => <Preview data={item}/>)}
+                {basket.space.map(item => <Preview key={item.id} data={item}/>)}
             </div>
 
             {basket.checkout &&<div>

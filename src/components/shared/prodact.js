@@ -1,24 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CountingButtons from './CountingButtons';
+import styles from './product.module.scss'
 
 const Product = ({data}) => {
 
     return (
-        <div>
+        <div className={styles.cardContainer}>
             <img src={data.image} alt="product" />
-            <h3>{data.title}</h3>
-            <p>{data.price}</p>
             <div>
-                <Link to={`/products/${data.id}`}>Details</Link>
-                {/* <div>
-                    {!basket.space.find(item=>item.id === data.id)?<button onClick={()=> dispatch({type : 'ADD_ITEM', payload : data})}>Add to card</button>
-                        : <button onClick={()=>dispatch({type : 'INCREASE', payload : data})}>+</button>    
-                    }
-                    {counter(basket , data)===1  && <button onClick={()=> dispatch({type : 'DELETE_ITEM', payload :data })}>trash</button>}
-                    {counter(basket , data)>1 && <button onClick={()=> dispatch({type : 'DECREASE', payload :data })}>-</button>}
-                </div> */}
-                <CountingButtons data={data}/>
+                <h3>{data.title}</h3>
+                <p>{data.price} $</p>
+                <div>
+                    <Link to={`/products/${data.id}`}>Details</Link>
+                    <CountingButtons data={data}/>
+                </div>
             </div>
         </div>
     );
