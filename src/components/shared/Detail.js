@@ -1,64 +1,70 @@
-import React, { useContext } from 'react';
-import {useParams} from 'react-router-dom'
-import { ApiData } from '../context/ApiProvider';
+import React, { useEffect, useState } from 'react';
+import {useLocation, useParams} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import CountingButtons from './CountingButtons';
+import { getData } from '../../services/getData';
+
+import queryString from 'query-string';
+
+import styles from './detail.module.scss'
 
 const Detail = () => {
-    let data = useContext(ApiData)
+    const [finalData , setFinalData] = useState({})
+
     let params = useParams()
+    let queries = useLocation()
 
-    let product = data[params.id-1]
 
-    // let block = <div>
-    //     <img src={item.image} alt="" />
-    //     <div>
-    //         <h3>{item.title}</h3>
-    //         <p>{item.description}</p>
-    //         <div>
-    //             <span>Category : </span>
-    //             <span>{item.category}</span>
-    //         </div>
-    //          <div>
-    //             <span>{item.price} $</span>
-    //             <Link to='/products'>back to shop</Link>
-    //          </div>
-    //     </div>
-    // </div>
+    let data = queryString.parse(queries.search)
+
+    const dataHandler = async ()=>{
+        if(Object.keys(data).length===7){
+            console.log('old data');
+            return data
+        }else{
+            let freshData = await getData(params.id)
+            console.log('new data');
+            return freshData
+        }
+        
+    }
+
+    useEffect(()=>{
+        dataHandler().then(res=>{
+            setFinalData({...res})
+        })
+    },[])
+    
+    console.log(finalData);
+    console.log(Object.keys(finalData).length);
+
 
     return (
+
         <div>
-            {data.length 
-            ? <div>
-                <img src={product.image} alt="" />
-                <div>
-                    <h3>{product.title}</h3>
-                    <p>{product.description}</p>
-                    <div>
-                        <div>
+            {Object.keys(finalData).length===0 ?
+            <h1 style={{margin : '150px auto 0 auto' , fontSize:'5rem', fontWeight : '900'}}>Loading ...</h1>
+            :<div className={styles.detailContainer}>
+                <img src={finalData.image} alt="" className={styles.banner} />
+                <div className={styles.infoBox}>
+                    <h3>{finalData.title}</h3>
+                    <p>{finalData.description}</p>
+                    <div className={styles.boxes}>
+                        <div className={styles.category}>
                             <span>Category : </span>
-                            <span>{product.category}</span>
+                            <span>{finalData.category}</span>
                         </div>
-                        {/* <div>
-                            {!basket.space.find(item=>item.id === product.id)?<button onClick={()=> dispatch({type : 'ADD_ITEM', payload : product})}>Add to card</button>
-                            : <button onClick={()=>dispatch({type : 'INCREASE', payload : product})}>+</button>    
-                            }
-                            {counter(basket , product)===1  && <button onClick={()=> dispatch({type : 'DELETE_ITEM', payload :product })}>trash</button>}
-                            {counter(basket , product)>1 && <button onClick={()=> dispatch({type : 'DECREASE', payload :product })}>-</button>}
-                        </div> */}
-                        <CountingButtons data={product} />
+                        <CountingButtons data={{...finalData , id : Number(finalData.id) , count : Number(finalData.count) , price : parseFloat(finalData.price)}} />
                     </div>
-                     <div>
-                        <span>{product.price} $</span>
+                     <div className={styles.boxes}>
+                        <span className={styles.price}>{finalData.price} $</span>
                         <Link to='/products'>back to shop</Link>
                      </div>
                 </div>
             </div>
-            : <h1>Loading ...</h1>
-            }
-
+        }
         </div>
-    );
+    )
 };
 
 export default Detail;

@@ -8,15 +8,14 @@ import trash from '../../assets/svg/icons8-trash.svg'
 const CountingButtons = ({data}) => {
     let {basket , dispatch} = useContext(Basket);
 
-
     return (
         <div className={styles.container}>
-            {!basket.space.find(item=>item.id === data.id)
+            {!basket.space.find(item=>item.id === Number(data.id))
                 &&<button className={styles.addToCard} onClick={()=> dispatch({type : 'ADD_ITEM', payload : data})}>Add to card</button>
             }
             <div className={styles.buttons}>
                 <div className={styles.buttonContainer}>
-                    {basket.space.find(item=>item.id === data.id)
+                    {basket.space.find(item=>item.id ===Number(data.id))
                         && <button className={styles.plus} onClick={()=> dispatch({type : 'INCREASE' , payload : data})}>+</button>
                     }
                     {counter(basket , data) >= 1 && <p className={styles.counter}>{counter(basket,data)}</p>}

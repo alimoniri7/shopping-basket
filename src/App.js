@@ -5,7 +5,7 @@ import ApiProvider from './components/context/ApiProvider';
 import BasketProvider from './components/context/basketProvider';
 import Products from './components/products';
 import Detail from './components/shared/Detail';
-import Navbar from './components/shared/Navbar';
+import Navbar from './components/shared/Navbar'
 
 const app = () => {
     return (

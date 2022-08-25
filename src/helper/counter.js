@@ -1,5 +1,6 @@
 export const counter = (basket , data) =>{
-    let index = basket.space.findIndex(item => item.id===data.id)
+    
+    let index = basket.space.findIndex(item => item.id === Number(data.id))
 
     if(index===-1){
         return false

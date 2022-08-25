@@ -1,0 +1,70 @@
+.detailContainer {
+    display: flex;
+    padding: 2rem;
+    background-color: #fff;
+    width: 80%;
+    margin: 100px auto 0 auto;
+    align-items: flex-start;
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 10px;
+    gap: 30px;
+}
+
+.banner {
+    width: 37%;
+}
+
+.infoBox {
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 10px;
+    margin: auto 0;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    >h3 {
+        font-size: 2rem;
+        color: rgb(0, 117, 219);
+        font-weight: 900;
+    }
+    >p {
+        font-size: 1.35rem;
+        line-height: 25px;
+    }
+}
+
+.boxes {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    >a {
+        width: 150px;
+        border-radius: 5px;
+        border: 1px solid rgb(134, 134, 134);
+        padding: .3rem 0;
+        font-size: 1.2rem;
+        text-align: center;
+        font-weight: 600;
+    }
+}
+
+.category {
+    span {
+        font-size: 1.3rem;
+        font-weight: 900;
+        &:first-child {
+            color: rgb(230, 173, 0);
+        }
+    }
+}
+
+.price {
+    background-color: rgb(0, 146, 17);
+    border-radius: 5px;
+    padding: .3rem 1rem;
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 600;
+}

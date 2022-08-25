@@ -10,9 +10,14 @@ const Products = () => {
     console.log(data);
 
     return (
-        <div className={styles.listContainer} >
+        <>
+        {data.length===0 ? <h1 className={styles.loading}>Loading ...</h1>
+        :<div className={styles.listContainer} >
             {data.map(item => <Product key={item.id} data={item}/>)}
         </div>
+        
+    }
+    </>
     );
 };
 

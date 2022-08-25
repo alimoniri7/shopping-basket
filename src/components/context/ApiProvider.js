@@ -9,7 +9,7 @@ const ApiProvider =  ({children}) => {
 
     useEffect(()=>{
         const fetchData = async () => {
-           setData(await getData())
+           setData(await getData(''))
         }
     
         fetchData()
