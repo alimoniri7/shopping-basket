@@ -10,6 +10,7 @@ import styles from './detail.module.scss'
 
 const Detail = () => {
     const [finalData , setFinalData] = useState({})
+    const [err , setErr] = useState({})
 
     let params = useParams()
     let queries = useLocation()
@@ -33,17 +34,18 @@ const Detail = () => {
         dataHandler().then(res=>{
             setFinalData({...res})
         })
+        .catch(err => setErr(err))
+        
     },[])
     
-    console.log(finalData);
-    console.log(Object.keys(finalData).length);
 
 
     return (
 
         <div>
-            {Object.keys(finalData).length===0 ?
-            <h1 style={{margin : '150px auto 0 auto' , fontSize:'5rem', fontWeight : '900'}}>Loading ...</h1>
+            {Object.keys(err).length && <h1 style={{margin : '150px auto 0 auto' , fontSize:'3rem', fontWeight : '900'}}>{err.message}</h1>}
+            {Object.keys(finalData).length===0 && !Object.keys(err).length ?
+            <h1 style={{margin : '150px auto 0 auto' , fontSize:'3rem', fontWeight : '900'}}>Loading ...</h1>
             :<div className={styles.detailContainer}>
                 <img src={finalData.image} alt="" className={styles.banner} />
                 <div className={styles.infoBox}>

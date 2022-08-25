@@ -12,7 +12,7 @@ const Product = ({data}) => {
         <div className={styles.cardContainer}>
             <img src={data.image} alt="product" />
             <div>
-                <h3>{shorter(data.title)}</h3>
+                <h3>{shorter(data.title , 2)}</h3>
                 <p>{data.price} $</p>
                 <div>
                     <Link to={`/products/${data.id}/${queryStrings}`}>Details</Link>

@@ -53,3 +53,9 @@
         width: 35px;
     }
 }
+
+@media (max-width: 500px) {
+    .navbar {
+        padding: .5rem 1.5rem;
+    }
+}

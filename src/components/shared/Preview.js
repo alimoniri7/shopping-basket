@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import { shorter } from '../../helper/shorter';
 import CountingButtons from './CountingButtons';
 import styles from './preview.module.scss'
 
@@ -11,7 +12,7 @@ const Preview = ({data}) => {
             </div>
             <div>
                 <div className={styles.info}>
-                    <Link to={`/products/${data.id}`}>{data.title}</Link>
+                    <Link to={`/products/${data.id}`}>{shorter(data.title , 3)}</Link>
                     <span>{data.price} $</span>
                 </div>
 

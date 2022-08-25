@@ -6,6 +6,7 @@ export let ApiData = createContext()
 const ApiProvider =  ({children}) => {
 
     const [data , setData] = useState([])
+    const [err , setErr] = useState({})
 
     useEffect(()=>{
         const fetchData = async () => {
@@ -13,10 +14,13 @@ const ApiProvider =  ({children}) => {
         }
     
         fetchData()
+        .catch(err => {
+            setErr(err)
+           })
     } , [children.Detail])
 
     return (
-            <ApiData.Provider value={data}>
+            <ApiData.Provider value={{data , err}}>
                 {children}
             </ApiData.Provider>
     );

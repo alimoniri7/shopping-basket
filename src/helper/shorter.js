@@ -1,5 +1,14 @@
-export const shorter = (text) => {
+export const shorter = (text , step) => {
     let temp = text.split(' ')
-    let newText = temp[0] + ' ' + temp[1]
+    let newText
+
+    for(let i=0 ; i<step ; i++){
+        newText += temp[i] +' '
+    }
+
+    newText+='...'
+
+
+
     return newText
 }

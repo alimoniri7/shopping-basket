@@ -68,3 +68,44 @@
     color: #fff;
     font-weight: 600;
 }
+
+@media (max-width: 1200px) {
+    .detailContainer {
+        width: 90%;
+    }
+}
+
+@media (max-width: 900px) {
+    .detailContainer {
+        flex-direction: column;
+    }
+    .banner {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .infoBox {
+        gap: 20px;
+        h3 {
+            font-size: 1.4rem;
+        }
+        p {
+            font-size: 1rem;
+        }
+    }
+    .category {
+        span {
+            font-size: .9rem;
+        }
+    }
+    .price {
+        font-size: .9rem;
+    }
+    .boxes {
+        a {
+            width: 100px;
+            font-size: .9rem;
+        }
+    }
+}

@@ -37,3 +37,16 @@
         font-weight: 900;
     }
 }
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+        >div {
+            &:last-child {
+                gap: 20px;
+                flex-direction: column;
+            }
+        }
+    }
+}
